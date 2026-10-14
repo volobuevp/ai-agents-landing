@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Анализ рынка внедрения ИИ-агентов в бизнес-процессы в РФ: цены фрилансеров, бутиков, агентств и enterprise-интеграторов. Октябрь 2026.">
+<title>Рынок внедрения ИИ-агентов в РФ — анализ цен — октябрь 2026</title>
+<style>
+  /* ===== Палитра: валидированный датавиз-дефолт (light/dark) ===== */
+  .viz-root {
+    color-scheme: light;
+    --page:          #f9f9f7;
+    --surface-1:     #fcfcfb;
+    --text-primary:  #0b0b0b;
+    --text-secondary:#52514e;
+    --text-muted:    #898781;
+    --grid:          #e1e0d9;
+    --baseline:      #c3c2b7;
+    --border:        rgba(11,11,11,0.10);
+    --series-1:      #2a78d6;
+    --good-text:     #006300;
+    --ord-1: #86b6ef; --ord-2: #5598e7; --ord-3: #2a78d6; --ord-4: #1c5cab; --ord-5: #104281;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) .viz-root {
+      color-scheme: dark;
+      --page:          #0d0d0d;
+      --surface-1:     #1a1a19;
+      --text-primary:  #ffffff;
+      --text-secondary:#c3c2b7;
+      --text-muted:    #898781;
+      --grid:          #2c2c2a;
+      --baseline:      #383835;
+      --border:        rgba(255,255,255,0.10);
+      --series-1:      #3987e5;
+      --good-text:     #0ca30c;
+      --ord-1: #9ec5f4; --ord-2: #6da7ec; --ord-3: #3987e5; --ord-4: #256abf; --ord-5: #184f95;
+    }
+  }
+  :root[data-theme="dark"] .viz-root {
+    color-scheme: dark;
+    --page:          #0d0d0d;
+    --surface-1:     #1a1a19;
+    --text-primary:  #ffffff;
+    --text-secondary:#c3c2b7;
+    --text-muted:    #898781;
+    --grid:          #2c2c2a;
+    --baseline:      #383835;
+    --border:        rgba(255,255,255,0.10);
+    --series-1:      #3987e5;
+    --good-text:     #0ca30c;
+    --ord-1: #9ec5f4; --ord-2: #6da7ec; --ord-3: #3987e5; --ord-4: #256abf; --ord-5: #184f95;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--page);
+    color: var(--text-primary);
+    line-height: 1.55;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .viz-root { max-width: 1080px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  /* ===== Шапка ===== */
+  header.page { margin-bottom: 2rem; }
+  .kicker { color: var(--text-muted); font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.5rem; }
+  h1 { font-size: clamp(1.5rem, 3.5vw, 2.25rem); font-weight: 600; letter-spacing: -0.01em; margin-bottom: 0.5rem; }
+  .subtitle { color: var(--text-secondary); max-width: 62ch; margin-bottom: 1rem; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+  .chip { font-size: 0.8125rem; color: var(--text-secondary); border: 1px solid var(--border); border-radius: 999px; padding: 0.25rem 0.75rem; background: var(--surface-1); }
+  .theme-toggle { margin-left: auto; font: inherit; font-size: 0.8125rem; padding: 0.35rem 0.9rem; border: 1px solid var(--border); border-radius: 999px; background: var(--surface-1); color: var(--text-secondary); cursor: pointer; }
+  .theme-toggle:hover { color: var(--text-primary); border-color: var(--baseline); }
+
+  /* ===== KPI-плитки ===== */
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 2.25rem; }
+  .tile { background: var(--surface-1); border: 1px solid var(--border); border-radius: 10px; padding: 1.1rem 1.25rem; }
+  .tile-label { color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.35rem; }
+  .tile-value { font-size: 2rem; font-weight: 600; letter-spacing: -0.01em; }
+  .tile-delta { margin-top: 0.3rem; font-size: 0.8125rem; color: var(--text-muted); }
+  .tile-delta.good { color: var(--good-text); }
+
+  /* ===== Секции ===== */
+  section.block { margin-bottom: 2.75rem; }
+  h2 { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.35rem; }
+  .block-sub { color: var(--text-secondary); font-size: 0.9375rem; max-width: 70ch; margin-bottom: 1.25rem; }
+  .block-note { color: var(--text-muted); font-size: 0.8125rem; margin-top: 0.75rem; }
+
+  /* ===== Графики ===== */
+  figure { background: var(--surface-1); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem 1.5rem 1.25rem; }
+  figure + figure { margin-top: 1rem; }
+  .fig-title { font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.25rem; }
+  .fig-sub { color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 1.25rem; }
+
+  .chart { position: relative; }
+  .row { display: grid; grid-template-columns: 200px 1fr; align-items: center; gap: 1rem; min-height: 30px; }
+  .row-label { font-size: 0.875rem; color: var(--text-secondary); text-align: right; }
+  .track { position: relative; height: 30px; }
+  .gridlines { position: absolute; inset: 0; pointer-events: none; }
+  .gridlines i { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--grid); }
+  .bar { position: absolute; top: 8px; height: 14px; border-radius: 4px; min-width: 6px; }
+  .row:focus-visible { outline: 2px solid var(--series-1); outline-offset: -2px; border-radius: 4px; }
+  .row:hover .bar, .row:focus-visible .bar { filter: brightness(1.1); }
+
+  .end-label { position: absolute; top: 50%; transform: translateY(-50%); font-size: 0.75rem; color: var(--text-secondary); white-space: nowrap; }
+  .end-label.left { right: calc(100% + 6px); }
+  .end-label.right { left: calc(100% + 6px); }
+  .end-label.anchored { right: auto; left: 0; transform: translateY(-50%); }
+  /* подпись, не влезающая у края трека, переносится внутрь полосы */
+  .bar .end-label { top: 50%; transform: translateY(-50%); font-weight: 600; }
+  .bar .end-label.inside-r { left: auto; right: 6px; }
+  .bar .end-label.inside-l { right: auto; left: 6px; }
+  .bar .end-label.ink { color: var(--text-primary); }
+  .bar .end-label.wht { color: #fff; }
+  .axis-tick.start { transform: none; }
+  .axis-tick.end { transform: translateX(-100%); }
+  .bar-wrap { position: absolute; top: 0; height: 100%; }
+
+  .axis { display: grid; grid-template-columns: 200px 1fr; gap: 1rem; margin-top: 0.35rem; }
+  .axis-ticks { position: relative; height: 1.1rem; }
+  .axis-tick { position: absolute; transform: translateX(-50%); font-size: 0.75rem; color: var(--text-muted); white-space: nowrap; }
+
+  /* ===== Тултип ===== */
+  #tooltip {
+    position: fixed; z-index: 50; pointer-events: none;
+    background: var(--surface-1); border: 1px solid var(--border); border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    padding: 0.6rem 0.8rem; font-size: 0.8125rem; max-width: 320px;
+    opacity: 0; transition: opacity 0.12s ease;
+  }
+  #tooltip.visible { opacity: 1; }
+  #tooltip .tt-title { color: var(--text-secondary); margin-bottom: 0.3rem; }
+  #tooltip .tt-value { font-weight: 600; font-size: 0.9375rem; color: var(--text-primary); }
+  #tooltip .tt-note { color: var(--text-muted); margin-top: 0.3rem; font-size: 0.75rem; }
+  #tooltip .tt-key { display: inline-block; width: 10px; height: 3px; border-radius: 2px; vertical-align: middle; margin-right: 6px; }
+
+  /* ===== Таблицы ===== */
+  .table-wrap { background: var(--surface-1); border: 1px solid var(--border); border-radius: 10px; overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.875rem; }
+  th, td { padding: 0.65rem 0.9rem; text-align: left; border-bottom: 1px solid var(--grid); vertical-align: top; }
+  th { color: var(--text-secondary); font-weight: 600; font-size: 0.8125rem; white-space: nowrap; }
+  tr:last-child td { border-bottom: none; }
+  td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  td .co { font-weight: 600; }
+  td .hint { color: var(--text-muted); font-size: 0.75rem; display: block; margin-top: 0.15rem; }
+  a { color: var(--series-1); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ===== Карточки ярусов ===== */
+  .tier-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+  .tier-card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem 1.4rem; }
+  .tier-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.3rem; display: flex; align-items: center; gap: 0.5rem; }
+  .tier-dot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+  .tier-card p { color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.55rem; }
+  .tier-card p b { color: var(--text-primary); font-weight: 600; }
+
+  /* ===== Выводы ===== */
+  .takeaways { counter-reset: tk; }
+  .takeaways li {
+    list-style: none; position: relative; padding-left: 2.6rem; margin-bottom: 1rem;
+    color: var(--text-secondary); max-width: 78ch;
+  }
+  .takeaways li::before {
+    counter-increment: tk; content: counter(tk, decimal-leading-zero);
+    position: absolute; left: 0; top: 0;
+    font-weight: 600; color: var(--text-muted); font-variant-numeric: tabular-nums;
+  }
+  .takeaways li b { color: var(--text-primary); }
+
+  /* ===== Источники ===== */
+  .sources { border-top: 1px solid var(--grid); padding-top: 1.5rem; }
+  .sources h2 { font-size: 1.0625rem; }
+  .sources p { color: var(--text-muted); font-size: 0.8125rem; margin-bottom: 0.4rem; }
+  .disclaimer { margin-top: 1.25rem; color: var(--text-muted); font-size: 0.8125rem; max-width: 78ch; border: 1px solid var(--border); border-radius: 8px; padding: 0.85rem 1rem; background: var(--surface-1); }
+
+  @media (max-width: 640px) {
+    .row, .axis { grid-template-columns: 110px 1fr; gap: 0.6rem; }
+    .row-label { font-size: 0.75rem; }
+  }
+</style>
+</head>
+<body>
+<div class="viz-root" id="root">
+
+  <header class="page">
+    <p class="kicker">Аналитический дашборд // Российская Федерация</p>
+    <h1>Рынок внедрения ИИ-агентов в бизнес-процессы</h1>
+    <p class="subtitle">Ценовые ярусы рынка: фриланс-биржи, бутиковые студии, средние агентства и enterprise-интеграторы. Кто игроки, сколько стоят этапы проекта и где свободная ниша для независимого эксперта.</p>
+    <div class="meta-row">
+      <span class="chip">Данные: 07.10.2026</span>
+      <span class="chip">318 источников, 60+ игроков</span>
+      <button class="theme-toggle" id="themeToggle" type="button">Тема: авто</button>
+    </div>
+  </header>
+
+  <!-- KPI -->
+  <section class="block" aria-label="Ключевые показатели рынка">
+    <div class="kpis">
+      <div class="tile">
+        <div class="tile-label">Рынок агентного ИИ в РФ, 2025</div>
+        <div class="tile-value">49,5 млрд ₽</div>
+        <div class="tile-delta good">×4 за год (11,5 млрд в 2024)</div>
+      </div>
+      <div class="tile">
+        <div class="tile-label">Компаний применяют или тестируют ИИ-агентов</div>
+        <div class="tile-value">46%</div>
+        <div class="tile-delta">~30% всего рынка ИИ</div>
+      </div>
+      <div class="tile">
+        <div class="tile-label">Довели автономных агентов до промэксплуатации</div>
+        <div class="tile-value">8%</div>
+        <div class="tile-delta">~90% пилотов 2025 отложены или трансформированы</div>
+      </div>
+      <div class="tile">
+        <div class="tile-label">Ожидаемая окупаемость внедрения</div>
+        <div class="tile-value">6–12 мес</div>
+        <div class="tile-delta">90% топ-менеджеров ждут ROI в год внедрения</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chart A -->
+  <section class="block" aria-label="Ценовые ярусы рынка">
+    <h2>Сколько стоит разовое внедрение ИИ-агента</h2>
+    <p class="block-sub">Диапазон цен за проект «агент под ключ» (1–3 бизнес-процесса) по ярусам рынка. Логарифмическая шкала — разброс цен от 2,5 тыс. до 50 млн ₽. Наведите на полосу, чтобы увидеть примеры игроков.</p>
+    <figure>
+      <div class="fig-title">Диапазон цен за проект по ярусам, тыс ₽</div>
+      <div class="fig-sub">Цвет = ярус рынка: светлее — дешевле. Точные диапазоны и примеры — в таблице ниже.</div>
+      <div class="chart" id="chartTiers" data-kind="range"></div>
+    </figure>
+    <p class="block-note">Enterprise-полоса обрезана шкалой сверху: программы внедрения для корпораций достигают 10–50 млн ₽ (исследование Cloud.ru/ВШЭ), а 3-летние совокупные затраты корпораций — сотен миллионов (Axenix).</p>
+  </section>
+
+  <!-- Chart B -->
+  <section class="block" aria-label="Фриланс: конкретные услуги">
+    <h2>Фриланс: за что сколько платят</h2>
+    <p class="block-sub">Конкретные услуги с бирж Kwork, FL.ru и freelance.ru по состоянию на октябрь 2026 — от простого Telegram-бота до автоматизации «под ключ». Логарифмическая шкала.</p>
+    <figure>
+      <div class="fig-title">Цена услуги, тыс ₽</div>
+      <div class="fig-sub">Одна серия — один тип услуги; источник указан в тултипе.</div>
+      <div class="chart" id="chartFreelance" data-kind="point"></div>
+    </figure>
+    <p class="block-note">Средний чек всей ИИ-категории на биржах — около 2 000 ₽; боты дешевле 10 000 ₽, по отзывам, «ломаются на реальных клиентах». Почасовые ставки фрилансеров этого сегмента — 1 000–2 500 ₽/ч.</p>
+  </section>
+
+  <!-- Chart C -->
+  <section class="block" aria-label="Сопровождение">
+    <h2>Абонентское сопровождение (retainer)</h2>
+    <p class="block-sub">Месячные платежи за поддержку агентов после запуска. Именно здесь рынок жалуется на пустоту: агент без сопровождения «ломается за 3–6 месяцев», но биржевой фриланс поддержку почти не предлагает.</p>
+    <figure>
+      <div class="fig-title">Диапазон retainer, тыс ₽ / мес</div>
+      <div class="fig-sub">Логарифмическая шкала.</div>
+      <div class="chart" id="chartRetainer" data-kind="range"></div>
+    </figure>
+  </section>
+
+  <!-- Table: stages × segments -->
+  <section class="block" aria-label="Этапы проекта и цены">
+    <h2>Этапы проекта и цены по сегментам</h2>
+    <p class="block-sub">Стандартная рыночная воронка: экспресс-разбор → аудит → пилот → внедрение → сопровождение. У части подрядчиков аудит и пилот засчитываются в стоимость внедрения.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Этап</th><th>Фриланс</th><th>Бутиковые студии</th><th>Средние агентства</th><th>Enterprise-интеграторы</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Аудит процессов</td>
+            <td class="num">0–60 (экспресс-разбор — бесплатно)</td>
+            <td class="num">60–180</td>
+            <td class="num">60–90 (редко 350–880)</td>
+            <td class="num">250–880</td>
+          </tr>
+          <tr>
+            <td>Пилот / PoC / MVP</td>
+            <td class="num">10–65</td>
+            <td class="num">50–175</td>
+            <td class="num">150–500</td>
+            <td class="num">350–900; консалтинг — 2 000–7 000</td>
+          </tr>
+          <tr>
+            <td>Агент «под ключ» (1–3 процесса)</td>
+            <td class="num">13–100 (верх фриланса — до 700)</td>
+            <td class="num">100–350</td>
+            <td class="num">450–1 500</td>
+            <td class="num">1 200–2 500</td>
+          </tr>
+          <tr>
+            <td>Мультиагентная / корпоративная система</td>
+            <td class="num">40–700</td>
+            <td class="num">350–990</td>
+            <td class="num">1 500–3 000</td>
+            <td class="num">3 000–15 000; программы — 10 000–50 000</td>
+          </tr>
+          <tr>
+            <td>Сопровождение, в мес</td>
+            <td class="num">3–50 (часто отсутствует)</td>
+            <td class="num">12,5–50</td>
+            <td class="num">30–120</td>
+            <td class="num">от ~42 (T1: 500/год); SLA-контракты</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="block-note">Все суммы — тыс ₽, если не указано иное. Первый год владения агентом дороже разработки на 30–50%: поддержка, токены LLM (3–25 тыс ₽/мес у МСБ, до 300 тыс ₽/мес в enterprise) и 2–3 итерации доработок.</p>
+  </section>
+
+  <!-- Table: top-10 -->
+  <section class="block" aria-label="Топ-10 игроков">
+    <h2>Топ-10 игроков enterprise-сегмента</h2>
+    <p class="block-sub">По выручке от ИИ-решений за 2025 год (CNews Analytics, июнь 2026): топ-15 компаний — 75,6 млрд ₽, +93% за год. Открытые цены в этом сегменте — редкость: «прайс по запросу» — сам по себе рыночный сигнал.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>#</th><th>Компания</th><th>ИИ-выручка / эффект</th><th>Фокус и продукция</th><th>Ценовой сигнал</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="num">1</td><td><span class="co">Cloud.ru</span></td><td class="num">41 млрд ₽ (+73%)</td><td>«Корпоративные AI-агенты за часы»: шаблоны без кода + кастом через ADK, MCP-коннекторы к CRM/ERP, LLM в контуре заказчика (152-ФЗ)</td><td>Прайс по запросу; инвестиции клиентов в агентов — 10–50 млн ₽</td></tr>
+          <tr><td class="num">2</td><td><span class="co">Сбер</span> (GigaChat, ГигаАгент)</td><td class="num">эффект ~450 млрд ₽/год по группе</td><td>Многоагентная архитектура; автоматизация до 80% рутинных обращений; пилот от 4 недель</td><td>API публично: от 0,0325 ₽/1000 токенов, пакеты от 19 500 ₽; Enterprise — по договору</td></tr>
+          <tr><td class="num">3</td><td><span class="co">Яндекс</span> (B2B Tech)</td><td class="num">2 млрд ₽ (+82%)</td><td>«Алиса AI Про» для бизнеса (120+ навыков, on-premise), универсальный ИИ-агент, AI Studio Workflows (мультиагентные пайплайны)</td><td>Прайс по запросу</td></tr>
+          <tr><td class="num">4</td><td><span class="co">MWS AI</span> (экс-МТС AI)</td><td class="num">6,9 млрд ₽ (+60,5%)</td><td>AI Agents Platform (реестр росс. ПО): ИИ-рекрутер, помощник колл-центра, цифровой аналитик; 200+ проектов</td><td>Индивидуально; MWS GPT — PAYG за токены</td></tr>
+          <tr><td class="num">5</td><td><span class="co">Т1 / «Иннотех»</span></td><td class="num">3,8 млрд ₽</td><td>T1 GPT: чат с LLM, RAG, Guardrails, SSO, закрытый контур, до 1 500 пользователей; 300+ ИИ-проектов</td><td class="num">Редкий публичный фикс: 1 200 тыс ₽ проект (10 раб. дней) + 1 200 тыс ₽/год лицензия + от 500 тыс ₽/год поддержка</td></tr>
+          <tr><td class="num">6</td><td><span class="co">ЦРТ</span></td><td class="num">5,07 млрд ₽ (+25,7%)</td><td>Голосовые роботы и агентные системы (AgentNavigator / ChatNavigator)</td><td>Прайс по запросу</td></tr>
+          <tr><td class="num">7</td><td><span class="co">Группа Астра</span></td><td class="num">—</td><td>«Доверенная ИИ-среда»: агентная ОС, low-code платформа с готовыми агентами (техподдержка, BI-аналитик, финансист); КИИ и госсектор</td><td>Прайс по запросу; 79% предприятий КИИ запрещают публичные генеративные сервисы</td></tr>
+          <tr><td class="num">8</td><td><span class="co">Рексофт</span></td><td class="num">—</td><td>AI-first трансформация: пилот за 2 месяца с расчётом ROI по 5–10 гипотезам; платформа «ИИ Хаб»; партнёр Yandex Cloud</td><td>Прайс по запросу</td></tr>
+          <tr><td class="num">9</td><td><span class="co">VS Robotics</span></td><td class="num">3,5 млрд ₽ (+47,7%)</td><td>Роботизация процессов, агентные системы</td><td>Прайс по запросу</td></tr>
+          <tr><td class="num">10</td><td><span class="co">Just AI</span></td><td class="num">+107% за год</td><td>Conversational AI и агентные платформы</td><td>Прайс по запросу</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="block-note">Классические интеграторы с сильными ИИ-практиками — ЛАНИТ (LANDEV AI, окупаемость 8–14 мес), IBS, «Инфосистемы Джет», Softline (базовые ИИ-решения от 500 тыс ₽), КРОК (прайс по запросу) — держат тот же «enterprise-сигнал»: открытых цен нет.</p>
+  </section>
+
+  <!-- Table: pricing models -->
+  <section class="block" aria-label="Модели ценообразования">
+    <h2>Модели ценообразования по сегментам</h2>
+    <p class="block-sub">Две модели делят рынок: фикс-пакеты у бутиков и средних агентств против «цены по запросу» у enterprise. Подписка на «AI-сотрудника» — самый быстрорастущий формат для МСБ.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Модель</th><th>Низ (фриланс, конструкторы)</th><th>Середина (бутики, агентства)</th><th>Топ (интеграторы, вендоры)</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>PoC / пилот</td>
+            <td>Редко; «бесплатный пилот за 48 часов» как маркетинг</td>
+            <td>Доминирует: 50–500 тыс ₽, 1–5 недель</td>
+            <td>Обязателен, часто бесплатный как часть крупного контракта</td>
+          </tr>
+          <tr>
+            <td>Фикс за сценарий / «под ключ»</td>
+            <td>4–80 тыс ₽</td>
+            <td>50–2 000 тыс ₽</td>
+            <td>Редкость; исключение — T1 GPT (1,2 млн ₽ фикс)</td>
+          </tr>
+          <tr>
+            <td>Retainer / сопровождение</td>
+            <td>Отсутствует или 3–50 тыс ₽/мес — слабое место сегмента</td>
+            <td>12,5–120 тыс ₽/мес</td>
+            <td>SLA-контракты; от ~42 тыс ₽/мес эквивалента (T1)</td>
+          </tr>
+          <tr>
+            <td>Подписка (агент как сервис)</td>
+            <td>No-code конструкторы: 2–10 тыс ₽/мес</td>
+            <td>SaaS-шаблоны: 10–120 тыс ₽/мес (SynthIQ, WikiAgent, AIBotManager)</td>
+            <td>Лицензия + PAYG за токены (GigaChat, MWS GPT)</td>
+          </tr>
+          <tr>
+            <td>Плата за эффект / ROI</td>
+            <td>Нет</td>
+            <td>Встречается: «окупаемость пилота за 3–5 мес» в договоре (agenty-ai, MBK-Agent)</td>
+            <td>Редка; рынок движется к измеряемому ROI</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Tier cards -->
+  <section class="block" aria-label="Срезы рынка">
+    <h2>Три среза рынка</h2>
+    <p class="block-sub">Кто есть кто в каждом ярусе: игроки, клиенты, цены и слабые места.</p>
+    <div class="tier-cards">
+      <div class="tier-card">
+        <h3><span class="tier-dot" style="background:var(--ord-1)"></span>Низ — фриланс и конструкторы</h3>
+        <p><b>Игроки:</b> Kwork (категория «ИИ-агенты», от 500 ₽), FL.ru, freelance.ru, Profi.ru; no-code-конструкторы с подпиской 2–10 тыс ₽/мес.</p>
+        <p><b>Клиенты:</b> микробизнес, предприниматели-одиночки.</p>
+        <p><b>Цены:</b> простой бот 2,5–8; агент одного процесса 13–20; верх — AI-офис 65, «под ключ» до 273 тыс ₽.</p>
+        <p><b>Слабое место:</b> нет поддержки после запуска, качество лотерейное, агент «ломается за 3–6 месяцев».</p>
+      </div>
+      <div class="tier-card">
+        <h3><span class="tier-dot" style="background:var(--ord-3)"></span>Середина — бутики и студии</h3>
+        <p><b>Игроки:</b> NeuralOps (69–419), «Раисыч» (пилот 60–150), t4ka (129–549), Пиксель Плюс (330–2 040), BUDGET SOFT, W1DO, AVAT, MBK-Agent, CLYOVO, LLAIM, AI Agenta (от 150).</p>
+        <p><b>Клиенты:</b> малый и средний бизнес: продажи, e-commerce, документооборот.</p>
+        <p><b>Цены:</b> пилот 50–500; «под ключ» 100–2 500; retainer 12,5–120 тыс ₽/мес.</p>
+        <p><b>Форматы:</b> фикс-пакеты, SLA на метрику в договоре, оплата 30/30/40, код остаётся у заказчика.</p>
+      </div>
+      <div class="tier-card">
+        <h3><span class="tier-dot" style="background:var(--ord-5)"></span>Топ — интеграторы и вендоры</h3>
+        <p><b>Игроки:</b> Cloud.ru, Сбер, Яндекс, MWS AI, Т1/«Иннотех», ЦРТ, Группа Астра, ЛАНИТ, IBS, «Инфосистемы Джет», КРОК, Softline.</p>
+        <p><b>Клиенты:</b> корпорации, банки, нефтегаз, промышленность, госсектор.</p>
+        <p><b>Цены:</b> от 1,2 млн ₽ фикс до программ 10–50 млн ₽; токены до 300 тыс ₽/мес; on-premise +20–30%.</p>
+        <p><b>Слабое место:</b> не спускаются в МСБ — типовой минимум enterprise-проекта ~5 млн ₽.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Takeaways -->
+  <section class="block" aria-label="Выводы">
+    <h2>Выводы: где место независимого эксперта</h2>
+    <ol class="takeaways">
+      <li><b>Свободная ниша — СМБ с бюджетами 50–350 тыс ₽ за проект.</b> Ниже — биржевой демпинг без поддержки, выше — интеграторы, не опускающиеся дешевле 1,2–5 млн ₽. Спрос в этом диапазоне есть, а зрелых игроков мало: рынок агентного ИИ вырос в 4 раза за год, но лишь 8% внедрений дошли до промэксплуатации.</li>
+      <li><b>Рабочая модель рынка: бесплатный экспресс-аудит → пилот (60–130 тыс ₽, 1–2 недели) → фикс за сценарий (150–250 тыс ₽, 3–4 недели) → retainer 15–25 тыс ₽/мес.</b> Аудит и пилот засчитываются в стоимость внедрения — так уже работают za-ai и agenty-ai.</li>
+      <li><b>Продавать измеримый эффект, а не технологию.</b> 90% пилотов 2025 отложены; заказчики требуют ROI и окупаемость за 6–12 мес. Документооборот и обработка заявок — ~70% всех внедрений: это родная территория эксперта по закупкам/ВЭД, а не «айтишника с n8n».</li>
+      <li><b>152-ФЗ и закрытый контур — аргумент №1 против возражений.</b> Юридические риски — барьер для 56% компаний, стоимость серверов — для 58%. Ответ: российские LLM (GigaChat API от 0,0325 ₽/1000 токенов), локальный контур, регламент «что можно давать ИИ».</li>
+      <li><b>Скорость — фактор выбора подрядчика.</b> Конкуренты продают «агентов за часы/дни» (T1 — 10 дней, пилот за 48 часов). Пилот 1–2 недели и сценарий 3–4 недели — норма рынка, её и держать.</li>
+      <li><b>Скрытая маржа — в сопровождении.</b> Рынок жалуется, что после запуска агента его некому вести. Retainer — одновременно стабильный доход, отличие от фриланса и страховка репутации: агент, «проживший» год у клиента, — лучший кейс для продажи следующего.</li>
+    </ol>
+  </section>
+
+  <!-- Sources -->
+  <footer class="sources">
+    <h2>Источники</h2>
+    <p><b>Рынок и статистика:</b> Ведомости (07.10.2026) — рынок ИИ 316,1 млрд ₽ (+30%); MegaResearch — агентный ИИ 49,5 млрд ₽; Коммерсантъ/MWS AI — корпоративные ИИ-помощники ~30 млрд ₽ (2026); Cloud.ru + ВШЭ (ComNews) — инвестиции 10–50 млн ₽; исследование МТС/D-Economy — инвестиции в агентов $31 млн; «Яков и Партнеры»/Яндекс (РБК) — рост автономных агентов ×4,5 к 2028; «Инфосистемы Джет» + Smart Ranking (Tproger) — 86% LLM / 8% промэксплуатации; РГ — барьеры внедрения; CNews Analytics — топ-60 ИИ-компаний.</p>
+    <p><b>Компании и бутики:</b> t1-ai.ru, softline.ru, axenix.pro, essg.consulting, agenty-ai.ru, pixelplus.ru, budget-soft.ru, w1do.ru, avat.studio, primeit.ru, new-sst.ru, 1integra.ru, sandboxer.ru, neuralops.ru, raisovich.ru, t4ka.ru, mkdgrupp.ru, mypl.pro, levsha-web.ru, dodigital.ru, clyovo.ru, mbk-agent.ru, golubef.ru, za-ai.ru, novikey.com, mybigtime.ru, nbmit.ru, aritin.ru, march-code.ru, projectmentor.ru, llaim.ru, aiagenta.ru, synthiq.ru, wikilect.ru, personik.ai, cloud.ru, mts.ai, astra.ru, reksoft.com, lanit.ru, kod.ru.</p>
+    <p><b>Фриланс-площадки:</b> kwork.ru (категория «ИИ-агенты» и карточки услуг), fl.ru (каталоги «AI-агенты» и «AI-автоматизация»), freelance.ru, profi.ru (521 специалист, «Создание нейросетей»), freelance.habr.com (закрыта с 28.02.2025 — исключена), vc.ru (обзоры цен 2026 ×3), rb.ru/Workzilla, dima-razrab.com, dareai.ru.</p>
+    <div class="disclaimer">
+      Методология: три параллельных исследования (интеграторы / фриланс-площадки / структура рынка), 07.10.2026. Прямая загрузка части российских доменов блокировалась — цены сняты из поисковой выдачи, цитирующей прайсы; перед коммерческими расчётами ключевые прайсы стоит перепроверить вручную. Цены — рыночные срезы открытых источников, не оферта. Все суммы в тыс ₽, если не указано иное.
+    </div>
+  </footer>
+</div>
+
+<div id="tooltip" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ===== Тема ===== */
+  var toggle = document.getElementById('themeToggle');
+  var root = document.documentElement;
+  var state = 'auto';
+  toggle.addEventListener('click', function () {
+    state = state === 'auto' ? 'dark' : (state === 'dark' ? 'light' : 'auto');
+    if (state === 'auto') { delete root.dataset.theme; }
+    else { root.dataset.theme = state; }
+    toggle.textContent = 'Тема: ' + state;
+  });
+
+  /* ===== Данные ===== */
+  var fmtTh = function (v) {
+    if (v >= 1000) {
+      var m = v / 1000;
+      return (Math.round(m * 10) / 10).toLocaleString('ru-RU') + ' млн ₽';
+    }
+    return v.toLocaleString('ru-RU', { maximumFractionDigits: 1 }) + ' тыс ₽';
+  };
+
+  // Ярусы: разовое внедрение (тыс ₽)
+  var tiers = [
+    { label: 'Фриланс-низ (биржи)', min: 2.5, max: 65, ord: 1,
+      note: 'Простой TG-бот 2,5–4; ИИ-менеджер с CRM 15–16; RAG-бот 5–8; AI-офис 65 (Kwork, FL.ru)' },
+    { label: 'Фриланс-верх (соло-эксперты)', min: 100, max: 700, ord: 2,
+      note: 'Автоматизация до 12 шагов — 169; AI-отзывы WB/Ozon — 273; мультиагентные системы 200–700 (FL.ru, vc.ru)' },
+    { label: 'Бутиковые студии', min: 50, max: 550, ord: 3,
+      note: 'NeuralOps 69–419; Раисыч от 150; CLYOVO 150–500; t4ka 129–549; MKDGRUPP от 100; ЛЕВША 60–300' },
+    { label: 'Средние агентства', min: 330, max: 2500, ord: 4,
+      note: 'Пиксель Плюс 330–2 040; BUDGET SOFT от 600; W1DO от 450; Prime IT 700–900; agenty-ai 1 200–2 500' },
+    { label: 'Enterprise-интеграторы', min: 1200, max: 50000, ord: 5,
+      note: 'T1 GPT от 1 200 (фикс); 1ИНТЕГРА от 5 000; программы 10–50 млн ₽ (Cloud.ru/ВШЭ); ESSG от 15 000' }
+  ];
+
+  // Фриланс-услуги (тыс ₽, точечные)
+  var freelance = [
+    { label: 'Простой TG-бот на GPT API', value: 3.5, note: 'Kwork, карточка услуги' },
+    { label: 'RAG-бот по базе знаний', value: 5, note: 'Kwork, без интеграций' },
+    { label: 'ИИ-менеджер с CRM под ключ', value: 15.5, note: 'Kwork, несколько карточек 15–16' },
+    { label: 'Агент одного бизнес-процесса', value: 16, note: 'FL.ru, 13–19,5 тыс ₽' },
+    { label: 'Мультиагентная система (LangGraph)', value: 40, note: 'FL.ru, автономные агенты' },
+    { label: 'AI-офис под ключ с агентами', value: 65, note: 'Kwork, верх площадки' },
+    { label: 'Автоматизация «под ключ», до 12 шагов', value: 169, note: 'FL.ru, 5 интеграций' },
+    { label: 'AI-ответы на отзывы WB/Ozon', value: 273, note: 'FL.ru, сервис для маркетплейсов' }
+  ];
+
+  // Retainer (тыс ₽/мес, диапазоны)
+  var retainer = [
+    { label: 'Фриланс', min: 3.1, max: 50, ord: 1,
+      note: 'Обслуживание AI-бота 3,1 (FL.ru); сопровождение до 50 (freelance.ru); часто отсутствует' },
+    { label: 'Бутиковые студии', min: 12.5, max: 50, ord: 2,
+      note: 'Golubeff от 12,5; BIGTIME от 20; Раисыч от 25; MBK-Agent от 30' },
+    { label: 'Средние агентства', min: 30, max: 120, ord: 3,
+      note: 'MBK-Agent 30–120; НейроБизнес «Команда» от 120; agenty-ai от 80' },
+    { label: 'Enterprise', min: 42, max: 250, ord: 4,
+      note: 'T1: 500 тыс ₽/год ≈ 42/мес; выделенная команда W1DO — от 250/мес' }
+  ];
+
+  /* ===== Тултип ===== */
+  var tt = document.getElementById('tooltip');
+  function showTT(x, y, title, value, note, colorVar) {
+    tt.textContent = '';
+    var t = document.createElement('div'); t.className = 'tt-title';
+    var key = document.createElement('span'); key.className = 'tt-key';
+    key.style.background = colorVar;
+    t.appendChild(key); t.appendChild(document.createTextNode(title));
+    var v = document.createElement('div'); v.className = 'tt-value'; v.textContent = value;
+    tt.appendChild(t); tt.appendChild(v);
+    if (note) {
+      var n = document.createElement('div'); n.className = 'tt-note'; n.textContent = note;
+      tt.appendChild(n);
+    }
+    tt.classList.add('visible');
+    var pad = 14, w = tt.offsetWidth, h = tt.offsetHeight;
+    var left = Math.min(x + pad, window.innerWidth - w - pad);
+    var top = y - h - pad; if (top < pad) { top = y + pad; }
+    tt.style.left = left + 'px'; tt.style.top = top + 'px';
+  }
+  function hideTT() { tt.classList.remove('visible'); }
+
+  function posOf(v, dmin, dmax) {
+    return (Math.log10(v) - Math.log10(dmin)) / (Math.log10(dmax) - Math.log10(dmin)) * 100;
+  }
+
+  function fmtTick(v) {
+    if (v >= 1000) { return (v / 1000) + ' млн'; }
+    return v + ' тыс';
+  }
+
+  function attachRowEvents(rowEl, title, valueText, note, colorVar, barEl) {
+    function ev(e) {
+      var x = (e.clientX !== undefined) ? e.clientX : (barEl.getBoundingClientRect().left + barEl.getBoundingClientRect().width / 2);
+      var y = (e.clientY !== undefined) ? e.clientY : barEl.getBoundingClientRect().top;
+      showTT(x, y, title, valueText, note, colorVar);
+    }
+    rowEl.addEventListener('pointermove', ev);
+    rowEl.addEventListener('pointerleave', hideTT);
+    rowEl.addEventListener('blur', hideTT);
+    rowEl.addEventListener('focus', function () { ev({}); });
+  }
+
+  var ORD = ['var(--ord-1)', 'var(--ord-2)', 'var(--ord-3)', 'var(--ord-4)', 'var(--ord-5)'];
+
+  function renderRange(containerId, rows, dmin, dmax, ticks, unit) {
+    var container = document.getElementById(containerId);
+    var grid = document.createElement('div'); grid.className = 'gridlines';
+    container.appendChild(grid);
+
+    rows.forEach(function (r) {
+      var rowEl = document.createElement('div');
+      rowEl.className = 'row'; rowEl.tabIndex = 0;
+      var lab = document.createElement('div'); lab.className = 'row-label'; lab.textContent = r.label;
+      var track = document.createElement('div'); track.className = 'track';
+
+      var left = posOf(r.min, dmin, dmax);
+      var right = posOf(r.max, dmin, dmax);
+
+      var bar = document.createElement('div'); bar.className = 'bar';
+      bar.style.left = left + '%';
+      bar.style.width = Math.max(right - left, 1.2) + '%';
+      bar.style.background = ORD[r.ord - 1];
+      bar.dataset.ink = r.ord <= 2 ? '1' : '0'; // светлые ступени — тёмный текст внутри
+
+      var wrap = document.createElement('div'); wrap.className = 'bar-wrap';
+      wrap.style.left = left + '%'; wrap.style.width = (right - left) + '%';
+      var lmin = document.createElement('span'); lmin.className = 'end-label left'; lmin.textContent = fmtTh(r.min);
+      var lmax = document.createElement('span'); lmax.className = 'end-label right'; lmax.textContent = fmtTh(r.max);
+      wrap.appendChild(lmin); wrap.appendChild(lmax);
+
+      track.appendChild(bar); track.appendChild(wrap);
+      rowEl.appendChild(lab); rowEl.appendChild(track);
+      container.appendChild(rowEl);
+      attachRowEvents(rowEl, r.label, fmtTh(r.min) + ' — ' + fmtTh(r.max) + (unit || ''), r.note, ORD[r.ord - 1], bar);
+    });
+
+    // ось + вертикальные линии сетки
+    var axis = document.createElement('div'); axis.className = 'axis';
+    var pad = document.createElement('div');
+    var ticksEl = document.createElement('div'); ticksEl.className = 'axis-ticks';
+    axis.appendChild(pad); axis.appendChild(ticksEl);
+    container.appendChild(axis);
+    ticks.forEach(function (t) {
+      var pos = posOf(t, dmin, dmax);
+      var i = document.createElement('i');
+      i.style.left = pos + '%';
+      grid.appendChild(i);
+      var s = document.createElement('span');
+      s.className = 'axis-tick';
+      if (pos < 3) s.classList.add('start');
+      if (pos > 97) s.classList.add('end');
+      s.style.left = pos + '%';
+      s.textContent = fmtTick(t);
+      ticksEl.appendChild(s);
+    });
+    fitLabels(container);
+  }
+
+  function renderPoint(containerId, rows, dmin, dmax, ticks) {
+    var container = document.getElementById(containerId);
+    var grid = document.createElement('div'); grid.className = 'gridlines';
+    ticks.forEach(function (t) {
+      var i = document.createElement('i');
+      i.style.left = posOf(t, dmin, dmax) + '%';
+      grid.appendChild(i);
+    });
+    container.appendChild(grid);
+
+    rows.forEach(function (r) {
+      var rowEl = document.createElement('div');
+      rowEl.className = 'row'; rowEl.tabIndex = 0;
+      var lab = document.createElement('div'); lab.className = 'row-label'; lab.textContent = r.label;
+      var track = document.createElement('div'); track.className = 'track';
+
+      var right = posOf(r.value, dmin, dmax);
+      var bar = document.createElement('div'); bar.className = 'bar';
+      bar.style.left = '0';
+      bar.style.width = right + '%';
+      bar.style.borderRadius = '4px 0 0 4px'; // квадрат у базовой линии слева
+      bar.style.background = 'var(--series-1)';
+      bar.dataset.ink = '0';
+
+      var wrap = document.createElement('div'); wrap.className = 'bar-wrap';
+      wrap.style.left = '0'; wrap.style.width = right + '%';
+      var lv = document.createElement('span'); lv.className = 'end-label right'; lv.textContent = fmtTh(r.value);
+      wrap.appendChild(lv);
+
+      track.appendChild(bar); track.appendChild(wrap);
+      rowEl.appendChild(lab); rowEl.appendChild(track);
+      container.appendChild(rowEl);
+      attachRowEvents(rowEl, r.label, fmtTh(r.value), r.note, 'var(--series-1)', bar);
+    });
+
+    var axis = document.createElement('div'); axis.className = 'axis';
+    var pad = document.createElement('div');
+    var ticksEl = document.createElement('div'); ticksEl.className = 'axis-ticks';
+    axis.appendChild(pad); axis.appendChild(ticksEl);
+    container.appendChild(axis);
+    ticks.forEach(function (t) {
+      var pos = posOf(t, dmin, dmax);
+      var s = document.createElement('span');
+      s.className = 'axis-tick';
+      if (pos < 3) s.classList.add('start');
+      if (pos > 97) s.classList.add('end');
+      s.style.left = pos + '%';
+      s.textContent = fmtTick(t);
+      ticksEl.appendChild(s);
+    });
+    fitLabels(container);
+  }
+
+  // подпись, не влезающая у края трека, переносится внутрь полосы
+  // (текст — белый на тёмных ступенях, чернильный на светлых)
+  function fitLabels(container) {
+    container.querySelectorAll('.track').forEach(function (track) {
+      var tr = track.getBoundingClientRect();
+      var bar = track.querySelector('.bar');
+      var wrap = track.querySelector('.bar-wrap');
+      if (!bar || !wrap) return;
+      var ink = bar.dataset.ink === '1' ? 'ink' : 'wht';
+      var bw = bar.getBoundingClientRect().width;
+      var lmax = wrap.querySelector('.end-label.right');
+      if (lmax && lmax.getBoundingClientRect().right > tr.right - 2) {
+        if (lmax.getBoundingClientRect().width + 12 <= bw) {
+          lmax.className = 'end-label inside-r ' + ink;
+          bar.appendChild(lmax);
+        } else {
+          lmax.style.display = 'none'; // значение — в тултипе и таблице ниже
+        }
+      }
+      var lmin = wrap.querySelector('.end-label.left');
+      if (lmin && lmin.getBoundingClientRect().left < tr.left + 2) {
+        if (lmin.getBoundingClientRect().width + 12 <= bw) {
+          lmin.className = 'end-label inside-l ' + ink;
+          bar.insertBefore(lmin, bar.firstChild);
+        } else {
+          lmin.style.display = 'none';
+        }
+      }
+    });
+  }
+
+  function renderAll() {
+    ['chartTiers', 'chartRetainer', 'chartFreelance'].forEach(function (id) {
+      document.getElementById(id).textContent = '';
+    });
+    renderRange('chartTiers', tiers, 1, 60000, [1, 10, 100, 1000, 10000], ' за проект');
+    renderRange('chartRetainer', retainer, 1, 400, [1, 10, 100], ' в мес');
+    renderPoint('chartFreelance', freelance, 1, 400, [1, 10, 100]);
+  }
+
+  renderAll();
+  var rzTimer;
+  window.addEventListener('resize', function () {
+    clearTimeout(rzTimer);
+    rzTimer = setTimeout(renderAll, 150);
+  });
+})();
+</script>
+</body>
+</html>

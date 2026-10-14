@@ -1,0 +1,19 @@
+# === Секреты — НИКОГДА не публиковать ===
+# Токен MAX-бота и chat_id (подключается через require в send.php)
+max-config.php
+**/.env
+
+# === Персональные данные клиентов (заявки, вложения) ===
+leads/*
+!leads/.htaccess
+uploads/*
+!uploads/.htaccess
+!uploads/dl.php
+
+# === Личные материалы и рантайм ===
+Фото/
+tmp/
+uploads.rar
+
+# === Локальные настройки агентов ===
+.claude/settings.local.json
